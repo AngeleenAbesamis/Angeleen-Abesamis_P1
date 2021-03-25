@@ -1,0 +1,55 @@
+﻿@model IEnumerable<BeautyStoreMVC.Models.OrderDetailsModel>
+
+@{
+    ViewData["Title"] = "Orders History";
+}
+
+<h1>Your Orders History</h1>
+
+<table class="table" id="DetailsTable">
+    <thead>
+        <tr>
+            <th>
+                Order #
+            </th>
+            <th>
+                Order Date
+            </th>
+            <th>
+                Price
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => item.price)
+            </td>
+            <td>
+                <a asp-action="ViewOrderDetails" asp-route-id="@item.OrderId">View Details</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            INitializeTable("DetailsTable");
+
+        });
+
+    </script>
+}

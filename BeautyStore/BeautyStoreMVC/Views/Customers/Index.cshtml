@@ -1,0 +1,69 @@
+﻿@model IEnumerable<BeautyStore.BeautyStoreModels.BeautyProduct>
+
+@{
+    ViewData["Title"] = "Products List";
+}
+
+<h1>Products List</h1>
+
+
+<table class="table" id="DetailsTable">
+    <thead>
+        <tr>
+
+            <th>
+                Product Name
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Brands)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sizes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    $@Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brands)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sizes)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    <a asp-action="AddtoCart" asp-route-id="@item.ProductId">Add to Cart</a> |
+                    <a asp-action="VIewMoreProductDetails" asp-route-id="@item.ProductId">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts {
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            INitializeTable("DetailsTable");
+
+        });
+
+    </script>
+}
